@@ -103,7 +103,7 @@ const validateRoleName = (req, res, next) => {
     } else if(role_name.trim() === 'admin') {
       next({ status: 422, message: "Role name can not be admin"})
     } else if(role_name.trim().length > 32) {
-      next({ stauts: 422, message: "Role name can not be longer than 32 chars"})
+      next({ status: 422, message: "Role name can not be longer than 32 chars"})
     } else {
       req.body = {
         ...req.body,
