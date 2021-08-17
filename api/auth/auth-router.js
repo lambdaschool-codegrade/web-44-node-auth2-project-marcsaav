@@ -34,7 +34,7 @@ router.post("/register", validateRoleName, async (req, res, next) => {
       let user = req.body
       const hash = bcrypt.hashSync(user.password, 8)
       user.password = hash
-      const newUser = await Users.add(user)
+      const [newUser] = await Users.add(user)
       res.status(201).json(newUser)
     } catch(err) {
       next(err)
