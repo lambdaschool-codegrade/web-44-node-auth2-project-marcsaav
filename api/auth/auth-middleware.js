@@ -63,14 +63,13 @@ const checkUsernameExists = async (req, res, next) => {
     }
   */
   const { username } = req.body
-  const users = await Users.findBy({ username })
-  users.map((user) => {
-    if(user.username === username) {
-      next()
-    } else {
-      next({ status: 401, message: "Invalid credentials"})
-    }
-  })
+  const [user] = await Users.findBy({ username })
+
+  if(user) {
+    next()
+  } else{
+    next({ status: 401, message: "Invalid credentials"})
+  }
 }
 
 
