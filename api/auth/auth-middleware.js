@@ -63,7 +63,7 @@ const checkUsernameExists = async (req, res, next) => {
     }
   */
   const { username } = req.body
-  const users = await Users.find()
+  const users = await Users.findBy({ username })
   users.map((user) => {
     if(user.username === username) {
       next()
